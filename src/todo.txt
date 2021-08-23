@@ -1,0 +1,27 @@
+
+
+Hooks -
+    localStorage custom hook
+
+Monday - 
+    Create (Team, Employee, Department)
+
+Data Model -
+
+Employee {
+    id,
+    name,
+    email,
+    contactNumber
+}
+
+Team {
+    teamName,
+    teamHead
+    employees [{Employee}]
+}
+
+Department {
+    departMentName i.e. headOfStaff,
+    teams [{Team}]
+}
