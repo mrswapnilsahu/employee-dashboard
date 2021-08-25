@@ -1,0 +1,60 @@
+{
+    "employees": [
+        {
+            "id": "1",
+            "empName": "Jaime Bernard",
+            "empMail": "jaimebernard@boink.com",
+            "empPhone": "+1 (993) 442-2118"
+        },
+        {
+            "id": "2",
+            "empName": "Janis Middleton",
+            "empMail": "janismiddleton@boink.com",
+            "empPhone": "+1 (907) 528-2508"
+        },
+        {
+            "id": "3",
+            "empName": "Valarie Gonzalez",
+            "empMail": "valariegonzalez@boink.com",
+            "empPhone": "+1 (806) 455-2812"
+        },
+        {
+            "id": "4",
+            "empName": "Huber Rivas",
+            "empMail": "huberrivas@boink.com",
+            "empPhone": "+1 (843) 484-2869"
+        },
+        {
+            "id": "5",
+            "empName": "Cora Morris",
+            "empMail": "coramorris@boink.com",
+            "empPhone": "+1 (851) 409-2633"
+        }
+    ],
+    "departments": [
+        {
+            "id": "1",
+            "departmentName": "Head Of Engg.",
+            "teams": [
+                {
+                    "teamId": "1",
+                    "teamName": "Team 1",
+                    "teamHead": "1",
+                    "employees": ["1","20"]
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "departmentName": "Head Of Design",
+            "teams": [
+                {
+                    "teamId": "1",
+                    "teamName": "Team 1",
+                    "teamHead": "John Doe",
+                    "employees": ["1","20"]
+                }
+            ]
+        }
+    ]
+}

@@ -25,3 +25,9 @@ Department {
     departMentName i.e. headOfStaff,
     teams [{Team}]
 }
+
+TODO:
+    -> UI implementation
+    -> Make department component
+    -> prevent creating blank entries
+    -> Set error where i have added ToDo in files
