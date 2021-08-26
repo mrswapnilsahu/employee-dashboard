@@ -8,8 +8,6 @@ import { Container } from '@material-ui/core';
 
 function Employee({employees, setEmployees}) {
     const [open, setOpen] = useState(false);
-    const [fullWidth, setFullWidth] = useState(true);
-    const [maxWidth, setMaxWidth] = useState('sm');
     const [empName, setEmpName] = useState("");
     const [empMail, setEmpMail] = useState("");
     const [empPhone, setEmpPhone] = useState("");
@@ -23,8 +21,8 @@ function Employee({employees, setEmployees}) {
             employeesCollection = [
                 {
                     id: 1,
-                    empName: empName,
-                    empPhone: empPhone,
+                    empName,
+                    empPhone,
                     empMail
                 },
             ];
@@ -32,8 +30,8 @@ function Employee({employees, setEmployees}) {
             const isEmployeeExist = employeesCollection.some(
                 (employee) => {
                     return (
-                        employee.empName.toLowerCase() ===
-                        empName.toLowerCase()
+                        employee.empMail.toLowerCase() ===
+                        empMail.toLowerCase()
                     );
                 }
             );
@@ -45,8 +43,8 @@ function Employee({employees, setEmployees}) {
                     +employeesCollection[employeesCollection.length - 1].id;
                 const employee = {
                     id: ++id,
-                    empName: empName,
-                    empPhone: empPhone,
+                    empName,
+                    empPhone,
                     empMail
                 };
                 employeesCollection.push(employee);
@@ -73,17 +71,17 @@ function Employee({employees, setEmployees}) {
             <Button variant="contained" color="primary" onClick={handleClickOpen}>
                 ADD EMPLOYEE
             </Button>
-            <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add Employee</DialogTitle>
                 <Container maxWidth="lg">
                     <TextField fullWidth margin="normal" error={(!empName)} id="outlined-basic" label="Employee Name" value={empName}
                         onChange={(e) => {
                             setEmpName(e.target.value);
-                        }} variant="filled" helperText={!empName ? 'Employee name is required.' : (alreadyExist ? "Employee already exist." : "")} />
+                        }} variant="filled" helperText={!empName ? 'Employee name is required.' : (alreadyExist && "")} />
                     <TextField fullWidth margin="normal" error={(!empPhone)} id="outlined-basic" label="Employee Phone" value={empPhone}
                         onChange={(e) => {
                             setEmpPhone(e.target.value);
-                        }} variant="filled" helperText={!empPhone ? 'Employee phone is required.' : (alreadyExist ? "Employee already exist." : "")} />
+                        }} variant="filled" helperText={!empPhone ? 'Employee phone is required.' : (alreadyExist && "")} />
                     <TextField fullWidth margin="normal" error={(!empMail)} id="outlined-basic" label="Employee Email" value={empMail}
                         onChange={(e) => {
                             setEmpMail(e.target.value);

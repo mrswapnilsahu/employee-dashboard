@@ -40,7 +40,7 @@
                     "teamId": "1",
                     "teamName": "Team 1",
                     "teamHead": "1",
-                    "employees": ["1","20"]
+                    "employeeIds": ["1","4"]
                 }
             ]
         },
@@ -51,10 +51,21 @@
                 {
                     "teamId": "1",
                     "teamName": "Team 1",
-                    "teamHead": "John Doe",
-                    "employees": ["1","20"]
+                    "teamHead": "3",
+                    "employeeIds": ["1","2"]
+                },
+                {
+                    "teamId": "2",
+                    "teamName": "Team 2",
+                    "teamHead": "4",
+                    "employeeIds": ["5"]
                 }
             ]
+        },
+        {
+            "id": "3",
+            "departmentName": "Head Of HR",
+            "teams": []
         }
     ]
 }
