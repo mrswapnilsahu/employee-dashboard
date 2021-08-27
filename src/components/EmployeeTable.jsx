@@ -45,17 +45,16 @@ const useStyles = makeStyles({
     },
 });
 
-export default function EmployeeTable({ employees, setEmployees }) {
+export default function EmployeeTable({ employees, setEmployees, searchResults, filterEmployeeData }) {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     const [open, setOpen] = useState(false);
     const [empId, setEmpId] = useState();
     const [empName, setEmpName] = useState("");
     const [empMail, setEmpMail] = useState("");
     const [empPhone, setEmpPhone] = useState("");
+    let i=0;
     // const [employee,setEmployee] = useState({});
 
     const handleClickOpen = () => {
@@ -75,20 +74,7 @@ export default function EmployeeTable({ employees, setEmployees }) {
         setPage(0);
     };
 
-    const filterEmployeeData = (event) => {
-        setSearchTerm(event.target.value);
-        if (searchTerm !== "") {
-            const newEmployeeList = employees.filter((employee) => {
-                return Object.values(employee)
-                    .join(" ")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase());
-            });
-            setSearchResults(newEmployeeList);
-        } else {
-            setSearchResults(employees);
-        }
-    };
+    
 
     const editEmployee = (empId) => {
         const emp = employees.find(({ id }) => {
@@ -147,11 +133,11 @@ export default function EmployeeTable({ employees, setEmployees }) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee) => {
+                            {employees.length > 0 ? employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={employee.id}>
                                         <TableCell>
-                                            {employee.id}
+                                            {++i}
                                         </TableCell>
                                         <TableCell>
                                             {employee.empName}
@@ -169,7 +155,7 @@ export default function EmployeeTable({ employees, setEmployees }) {
                                         </TableCell>
                                     </TableRow>
                                 );
-                            })}
+                            }) : <center>No Employees available</center>}
                         </TableBody>
                     </Table>
                 </TableContainer>

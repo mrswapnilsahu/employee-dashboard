@@ -25,6 +25,8 @@ function Dashboard() {
     const [empName, setEmpName] = useState("");
     const [empMail, setEmpMail] = useState("");
     const [empPhone, setEmpPhone] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -130,6 +132,21 @@ function Dashboard() {
         }
     }
 
+    const filterEmployeeData = (event) => {
+        setSearchTerm(event.target.value);
+        if (searchTerm !== "") {
+            const newEmployeeList = employees.filter((employee) => {
+                return Object.values(employee)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+            });
+            setSearchResults(newEmployeeList);
+        } else {
+            setSearchResults(employees);
+        }
+    };
+
     return (
         <>
             <Grid container>
@@ -153,7 +170,7 @@ function Dashboard() {
                     <Grid item>
                         {
                             currentPage === "Employee" ?
-                                <EmployeeTable employees={employees} setEmployees={setEmployees}/>
+                                <EmployeeTable setEmployees={setEmployees} searchTerm={searchTerm} setSearchTerm={searchTerm} employees={searchTerm.length < 1 ? employees : searchResults} filterEmployeeData={filterEmployeeData}/>
                                 : (teams.length > 0) ? <SimpleAccordion teams={teams} setTeams={setTeams} employees={employees} key="_op_"/> : "No teams added.Please add teams"
                         }
                     </Grid>
