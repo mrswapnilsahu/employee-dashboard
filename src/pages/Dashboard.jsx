@@ -10,6 +10,7 @@ import SimpleAccordion from "../components/SimpleAccordion";
 import EmployeeData from "../data/data.json";
 import Sidenav from "./Sidenav";
 import Grid from '@material-ui/core/Grid';
+import EmployeeTable from "../components/EmployeeTable";
 
 function Dashboard() {
     const [departments, setDepartments] = useState([]);
@@ -20,6 +21,10 @@ function Dashboard() {
     const [open, setOpen] = useState(false);
     const [alreadyExist, setAlreadyExist] = useState(false);
     const [teams, setTeams] = useState([]);
+    const [currentPage, setCurrentPage] = useState("Employee");
+    const [empName, setEmpName] = useState("");
+    const [empMail, setEmpMail] = useState("");
+    const [empPhone, setEmpPhone] = useState("");
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -86,7 +91,7 @@ function Dashboard() {
     };
     // console.log(EmployeeData);
 
-    const addTeam = (departmentId, teamName, teamHead) => {
+    const addTeam = (departmentId, teamName, teamHead, employeeIds) => {
         // debugger;
         let departmentCollection = departments;
         const target = departmentCollection.find(({ id }) => {
@@ -100,7 +105,7 @@ function Dashboard() {
             const team = {
                 teamName,
                 teamHead,
-                employeeIds: [],
+                employeeIds,
             };
             if (target.teams.length) {
                 let id = +target.teams[target.teams.length - 1].teamId;
@@ -130,8 +135,8 @@ function Dashboard() {
             <Grid container>
                 <Grid item sm={3}>
                     <Sidenav departments={departments} fetchTeams={fetchTeams} departmentName={departmentName}
-                        teams={teams}
-                        addTeam={addTeam} setTeamName={setTeamName} setTeamHead={setTeamHead} teamHead={teamHead} teamName={teamName} alreadyExist={alreadyExist} />
+                        teams={teams} setTeams={setTeams}
+                        addTeam={addTeam} setTeamName={setTeamName} setTeamHead={setTeamHead} teamHead={teamHead} teamName={teamName} alreadyExist={alreadyExist} setCurrentPage={setCurrentPage} employees={employees}/>
                 </Grid>
                 <Grid item sm={9} >
                     <Grid container item xs={6} sm={9} spacing={10}>
@@ -141,12 +146,16 @@ function Dashboard() {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Employee employees={employees} setEmployees={setEmployees} />
+                            <Employee employees={employees} setEmployees={setEmployees} empName={empName} empMail={empMail} empPhone={empPhone} setEmpName={setEmpName} setEmpMail={setEmpMail} setEmpPhone={setEmpPhone}/>
                         </Grid>
                     </Grid>
 
                     <Grid item>
-                        {(teams.length > 0) ? <SimpleAccordion teams={teams} setTeams={setTeams} employees={employees} /> : "No teams added.Please add teams"}
+                        {
+                            currentPage === "Employee" ?
+                                <EmployeeTable employees={employees} setEmployees={setEmployees}/>
+                                : (teams.length > 0) ? <SimpleAccordion teams={teams} setTeams={setTeams} employees={employees} key="_op_"/> : "No teams added.Please add teams"
+                        }
                     </Grid>
                 </Grid>
             </Grid>

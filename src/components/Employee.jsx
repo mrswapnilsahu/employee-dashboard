@@ -6,11 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Container } from '@material-ui/core';
 
-function Employee({employees, setEmployees}) {
+function Employee({employees, setEmployees, empName, empMail, empPhone, setEmpName, setEmpMail, setEmpPhone}) {
     const [open, setOpen] = useState(false);
-    const [empName, setEmpName] = useState("");
-    const [empMail, setEmpMail] = useState("");
-    const [empPhone, setEmpPhone] = useState("");
     const [alreadyExist, setAlreadyExist] = useState(false);
     // const [employees, setEmployees] = useState([]);
 
@@ -50,7 +47,7 @@ function Employee({employees, setEmployees}) {
                 employeesCollection.push(employee);
             }
         }
-        console.log(employeesCollection);
+        // console.log(employeesCollection);
         setEmployees(employeesCollection);
         setEmpName("");
         setEmpPhone("");

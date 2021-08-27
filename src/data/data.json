@@ -1,34 +1,130 @@
 {
     "employees": [
         {
-            "id": "1",
+            "id": 1,
             "empName": "Jaime Bernard",
             "empMail": "jaimebernard@boink.com",
             "empPhone": "+1 (993) 442-2118"
         },
         {
-            "id": "2",
+            "id": 2,
             "empName": "Janis Middleton",
             "empMail": "janismiddleton@boink.com",
             "empPhone": "+1 (907) 528-2508"
         },
         {
-            "id": "3",
+            "id": 3,
             "empName": "Valarie Gonzalez",
             "empMail": "valariegonzalez@boink.com",
             "empPhone": "+1 (806) 455-2812"
         },
         {
-            "id": "4",
+            "id": 4,
             "empName": "Huber Rivas",
             "empMail": "huberrivas@boink.com",
             "empPhone": "+1 (843) 484-2869"
         },
         {
-            "id": "5",
+            "id": 5,
             "empName": "Cora Morris",
             "empMail": "coramorris@boink.com",
             "empPhone": "+1 (851) 409-2633"
+        },
+        {
+            "id": 6,
+            "empName": "Cole Stout",
+            "empMail": "colestout@podunk.com",
+            "empPhone": "+1 (944) 448-3083"
+        },
+        {
+            "id": 7,
+            "empName": "Dorothy Parks",
+            "empMail": "dorothyparks@podunk.com",
+            "empPhone": "+1 (866) 405-2564"
+        },
+        {
+            "id": 8,
+            "empName": "Alissa Pickett",
+            "empMail": "alissapickett@podunk.com",
+            "empPhone": "+1 (824) 419-2959"
+        },
+        {
+            "id": 9,
+            "empName": "Mara Bishop",
+            "empMail": "marabishop@podunk.com",
+            "empPhone": "+1 (864) 526-3469"
+        },
+        {
+            "id": 10,
+            "empName": "Mcpherson Carlson",
+            "empMail": "mcphersoncarlson@podunk.com",
+            "empPhone": "+1 (872) 512-3657"
+        },
+        {
+            "id": 11,
+            "empName": "Liliana Strong",
+            "empMail": "lilianastrong@podunk.com",
+            "empPhone": "+1 (863) 583-2051"
+        },
+        {
+            "id": 12,
+            "empName": "Juliette Callahan",
+            "empMail": "juliettecallahan@podunk.com",
+            "empPhone": "+1 (888) 522-3881"
+        },
+        {
+            "id": 13,
+            "empName": "Alison Galloway",
+            "empMail": "alisongalloway@podunk.com",
+            "empPhone": "+1 (897) 421-3559"
+        },
+        {
+            "id": 14,
+            "empName": "Rowe Crawford",
+            "empMail": "rowecrawford@podunk.com",
+            "empPhone": "+1 (936) 498-3288"
+        },
+        {
+            "id": 15,
+            "empName": "Nielsen Norris",
+            "empMail": "nielsennorris@podunk.com",
+            "empPhone": "+1 (868) 463-3333"
+        },
+        {
+            "id": 16,
+            "empName": "Stacy Suarez",
+            "empMail": "stacysuarez@podunk.com",
+            "empPhone": "+1 (952) 556-2280"
+        },
+        {
+            "id": 17,
+            "empName": "Guthrie Parrish",
+            "empMail": "guthrieparrish@podunk.com",
+            "empPhone": "+1 (965) 402-3884"
+        },
+        {
+            "id": 18,
+            "empName": "Rose Kerr",
+            "empMail": "rosekerr@podunk.com",
+            "empPhone": "+1 (905) 486-2774"
+        },
+        {
+            "id": 19,
+            "empName": "Vance Bean",
+            "empMail": "vancebean@podunk.com",
+            "empPhone": "+1 (970) 581-3100"
+        },
+        {
+            "id": 20,
+            "empName": "Hunt Burgess",
+            "empMail": "huntburgess@podunk.com",
+            "empPhone": "+1 (882) 447-2711"
+        },
+        {
+            "id": 21,
+            "empName": "Pamela Odonnell",
+            "empMail": "pamelaodonnell@podunk.com",
+            "empPhone": "+1 (913) 459-3125"
         }
     ],
     "departments": [
@@ -40,7 +136,10 @@
                     "teamId": "1",
                     "teamName": "Team 1",
                     "teamHead": "1",
-                    "employeeIds": ["1","4"]
+                    "employeeIds": [
+                        "1",
+                        "4"
+                    ]
                 }
             ]
         },
@@ -52,13 +151,18 @@
                     "teamId": "1",
                     "teamName": "Team 1",
                     "teamHead": "3",
-                    "employeeIds": ["1","2"]
+                    "employeeIds": [
+                        "1",
+                        "2"
+                    ]
                 },
                 {
                     "teamId": "2",
                     "teamName": "Team 2",
                     "teamHead": "4",
-                    "employeeIds": ["5"]
+                    "employeeIds": [
+                        "5"
+                    ]
                 }
             ]
         },

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Sidenav({departments, fetchTeams, teams, addTeam, setTeamHead, setTeamName, teamHead, teamName, alreadyExist}) {
+export default function Sidenav({ departments, fetchTeams, teams, setTeams, addTeam, setTeamHead, setTeamName, teamHead, teamName, alreadyExist, setCurrentPage, employees }) {
     const classes = useStyles();
 
     return (
@@ -31,11 +31,14 @@ export default function Sidenav({departments, fetchTeams, teams, addTeam, setTea
             }
             className={classes.root}
         >
+            <ListItem button onClick={() => { setCurrentPage("Employee") }}>
+                <ListItemText>Employees List</ListItemText>
+            </ListItem>
             {
                 departments.map(({ id, departmentName }) => {
                     return <ListItem button key={id}>
-                        <ListItemText primary={departmentName} onClick={()=>fetchTeams(id)}/>
-                        <Team teamHead={teamHead} teamName={teamName} setTeamHead={setTeamHead} setTeamName={setTeamName} teams={teams} addTeam={addTeam} id={id} alreadyExist={alreadyExist}/>
+                        <ListItemText primary={departmentName} onClick={() => { fetchTeams(id); setCurrentPage("Teams") }} />
+                        <Team teamHead={teamHead} teamName={teamName} setTeamHead={setTeamHead} setTeamName={setTeamName} teams={teams} setTeams={setTeams} addTeam={addTeam} id={id} alreadyExist={alreadyExist} employees={employees}/>
                     </ListItem>
                 })
             }

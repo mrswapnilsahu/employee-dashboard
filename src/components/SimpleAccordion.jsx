@@ -14,10 +14,22 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FormHelperText } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function SimpleAccordion({ teams, employees, setTeams }) {
   // const [employeeMapped, setEmployeeMapped] = useState({})
   const [open, setOpen] = useState(false);
+  const [teamID, setTeamID] = useState();
   // const [alreadyExist, setAlreadyExist] = useState(false);
   const [employeeList, setEmployeeList] = useState([]);
 
@@ -44,6 +56,7 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
 
   const removeMember = (teamId, employeeId) => {
     console.log(teamId, employeeId);
+    debugger;
     let teamsCollection = teams;
     const team = teamsCollection.find((team) => {
       return team.teamId === teamId;
@@ -55,14 +68,14 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
   }
 
   const addEmployeeToTeam = (teamId) => {
-    // console.log(teamId)
+    console.log(teamId)
     let teamsCollection = teams;
     const team = teamsCollection.find((team) => {
       return team.teamId === teamId;
     })
     if (team) {
-      employeeList.forEach((emp)=>{
-        if(team.employeeIds.indexOf(emp) === -1){
+      employeeList.forEach((emp) => {
+        if (team.employeeIds.indexOf(emp) === -1) {
           team.employeeIds.push(emp);
         }
       })
@@ -85,14 +98,31 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
                 <Typography variant="button" display="block" gutterBottom>{teamName} - {mapEmployeeData(teamHead)}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
+                {/* <Typography style={{ width: "30%" }}> */}
+
                   {employeeIds ? employeeIds.map((employeeId) => {
-                    return <li key={employeeId}>{mapEmployeeData(employeeId)} <button onClick={() => removeMember(teamId, employeeId)}>X</button></li>
+                    return (
+                      <List key={`${employeeId}${teamId}`}>
+                        <ListItem>
+                          <ListItemAvatar>
+                            <Avatar>
+                              <PersonIcon />
+                            </Avatar>
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={mapEmployeeData(employeeId)}
+                          />
+                          <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="delete" onClick={() => removeMember(teamId, employeeId)} color="secondary">
+                              <DeleteIcon />
+                            </IconButton>
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      </List>
+                    )
                   }) : "No employees added to the team. Please add employees."}
-                  <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                    ADD Employees
-                  </Button>
-                </Typography>
+                <Button color="primary" onClick={()=>{handleClickOpen();setTeamID(teamId)}}>Add Employee</Button>
+                {/* </Typography> */}
               </AccordionDetails>
             </Accordion>
             <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title" key={teamName}>
@@ -118,7 +148,7 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
                 <Button onClick={handleClose} variant="outlined" color="secondary">
                   Cancel
                 </Button>
-                <Button onClick={() => addEmployeeToTeam(teamId)} variant="outlined" color="primary" disabled={employeeList.length===0}>
+                <Button onClick={() => addEmployeeToTeam(teamID)} variant="outlined" color="primary" disabled={employeeList.length === 0}>
                   Save
                 </Button>
               </DialogActions>
