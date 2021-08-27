@@ -88,6 +88,7 @@ function Dashboard() {
             }
         }
         setDepartments(departmentCollection);
+        localStorage.setItem("department", JSON.stringify(departmentCollection));
         setDepartmentName("");
         setAlreadyExist(false);
     };
@@ -117,6 +118,7 @@ function Dashboard() {
             }
             target.teams.push(team);
             setDepartments(departmentCollection);
+            localStorage.setItem("department", JSON.stringify(departmentCollection));
         } else {
             // ToDo : Set error : Team alreaady exist
             setAlreadyExist(true);
@@ -153,7 +155,7 @@ function Dashboard() {
                 <Grid item sm={3}>
                     <Sidenav departments={departments} fetchTeams={fetchTeams} departmentName={departmentName}
                         teams={teams} setTeams={setTeams}
-                        addTeam={addTeam} setTeamName={setTeamName} setTeamHead={setTeamHead} teamHead={teamHead} teamName={teamName} alreadyExist={alreadyExist} setCurrentPage={setCurrentPage} employees={employees}/>
+                        addTeam={addTeam} setTeamName={setTeamName} setTeamHead={setTeamHead} teamHead={teamHead} teamName={teamName} alreadyExist={alreadyExist} setCurrentPage={setCurrentPage} employees={employees} />
                 </Grid>
                 <Grid item sm={9} >
                     <Grid container item xs={6} sm={9} spacing={10}>
@@ -163,15 +165,15 @@ function Dashboard() {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Employee employees={employees} setEmployees={setEmployees} empName={empName} empMail={empMail} empPhone={empPhone} setEmpName={setEmpName} setEmpMail={setEmpMail} setEmpPhone={setEmpPhone}/>
+                            <Employee employees={employees} setEmployees={setEmployees} empName={empName} empMail={empMail} empPhone={empPhone} setEmpName={setEmpName} setEmpMail={setEmpMail} setEmpPhone={setEmpPhone} />
                         </Grid>
                     </Grid>
 
                     <Grid item>
                         {
                             currentPage === "Employee" ?
-                                <EmployeeTable setEmployees={setEmployees} searchTerm={searchTerm} setSearchTerm={searchTerm} employees={searchTerm.length < 1 ? employees : searchResults} filterEmployeeData={filterEmployeeData}/>
-                                : (teams.length > 0) ? <SimpleAccordion teams={teams} setTeams={setTeams} employees={employees} key="_op_"/> : "No teams added.Please add teams"
+                                <EmployeeTable setEmployees={setEmployees} searchTerm={searchTerm} setSearchTerm={searchTerm} employees={searchTerm.length < 1 ? employees : searchResults} filterEmployeeData={filterEmployeeData} />
+                                : (teams.length > 0) ? <SimpleAccordion teams={teams} setTeams={setTeams} employees={employees} key="_op_" /> : "No teams added.Please add teams"
                         }
                     </Grid>
                 </Grid>

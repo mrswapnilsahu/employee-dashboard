@@ -55,8 +55,8 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
   }
 
   const removeMember = (teamId, employeeId) => {
-    console.log(teamId, employeeId);
-    debugger;
+    // console.log(teamId, employeeId);
+    // debugger;
     let teamsCollection = teams;
     const team = teamsCollection.find((team) => {
       return team.teamId === teamId;
@@ -68,7 +68,7 @@ export default function SimpleAccordion({ teams, employees, setTeams }) {
   }
 
   const addEmployeeToTeam = (teamId) => {
-    console.log(teamId)
+    // console.log(teamId)
     let teamsCollection = teams;
     const team = teamsCollection.find((team) => {
       return team.teamId === teamId;

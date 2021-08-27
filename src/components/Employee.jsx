@@ -49,6 +49,7 @@ function Employee({employees, setEmployees, empName, empMail, empPhone, setEmpNa
         }
         // console.log(employeesCollection);
         setEmployees(employeesCollection);
+        localStorage.setItem("employees", JSON.stringify(employeesCollection));
         setEmpName("");
         setEmpPhone("");
         setEmpMail("");
