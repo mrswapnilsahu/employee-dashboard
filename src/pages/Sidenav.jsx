@@ -24,21 +24,19 @@ export default function Sidenav({ departments, fetchTeams, teams, setTeams, addT
         <List
             component="nav"
             aria-labelledby="nested-list-subheader"
-            subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Department List
-                </ListSubheader>
-            }
             className={classes.root}
         >
             <ListItem button onClick={() => { setCurrentPage("Employee") }}>
                 <ListItemText>Employees List</ListItemText>
             </ListItem>
+            <ListSubheader component="div" id="nested-list-subheader">
+                Department List
+            </ListSubheader>
             {
                 departments.map(({ id, departmentName }) => {
                     return <ListItem button key={id}>
-                        <ListItemText primary={departmentName} onClick={() => { fetchTeams(id); setCurrentPage("Teams") }} />
-                        <Team teamHead={teamHead} teamName={teamName} setTeamHead={setTeamHead} setTeamName={setTeamName} teams={teams} setTeams={setTeams} addTeam={addTeam} id={id} alreadyExist={alreadyExist} employees={employees}/>
+                        <ListItemText key={`list_item_${id}`} primary={departmentName} onClick={() => { fetchTeams(id); setCurrentPage("Teams") }} />
+                        <Team key={`team_${id}`} teamHead={teamHead} teamName={teamName} setTeamHead={setTeamHead} setTeamName={setTeamName} teams={teams} setTeams={setTeams} addTeam={addTeam} id={id} alreadyExist={alreadyExist} employees={employees} />
                     </ListItem>
                 })
             }

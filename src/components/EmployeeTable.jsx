@@ -54,7 +54,6 @@ export default function EmployeeTable({ employees, setEmployees, searchResults, 
     const [empName, setEmpName] = useState("");
     const [empMail, setEmpMail] = useState("");
     const [empPhone, setEmpPhone] = useState("");
-    let i=0;
     // const [employee,setEmployee] = useState({});
 
     const handleClickOpen = () => {
@@ -102,6 +101,7 @@ export default function EmployeeTable({ employees, setEmployees, searchResults, 
                     return employee.id === empId ? { ...emp } : employee;
                 })
             );
+            localStorage.setItem("employees", JSON.stringify(employees));
         }
 
     }
@@ -133,11 +133,11 @@ export default function EmployeeTable({ employees, setEmployees, searchResults, 
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {employees.length > 0 ? employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee) => {
+                            {employees.length > 0 ? employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee, index) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={employee.id}>
                                         <TableCell>
-                                            {++i}
+                                            {++index}
                                         </TableCell>
                                         <TableCell>
                                             {employee.empName}
@@ -149,13 +149,13 @@ export default function EmployeeTable({ employees, setEmployees, searchResults, 
                                             {employee.empPhone}
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton aria-label="delete" color="primary" onClick={() => editEmployee(employee.id)}>
-                                                <EditIcon onClick={handleClickOpen} />
+                                            <IconButton aria-label="delete" color="primary" onClick={() => {editEmployee(employee.id);handleClickOpen()}}>
+                                                <EditIcon/>
                                             </IconButton>
                                         </TableCell>
                                     </TableRow>
                                 );
-                            }) : <center>No Employees available</center>}
+                            }) : <TableRow><TableCell>No Employees found</TableCell></TableRow>}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -172,15 +172,15 @@ export default function EmployeeTable({ employees, setEmployees, searchResults, 
             <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Edit Employee</DialogTitle>
                 <Container maxWidth="lg">
-                    <TextField fullWidth margin="normal" error={(!empName)} id="outlined-basic" label="Employee Name" value={empName}
+                    <TextField fullWidth margin="normal" error={(!empName)} label="Employee Name" value={empName}
                         onChange={(e) => {
                             setEmpName(e.target.value);
                         }} variant="filled" helperText={!empName ? 'Employee name is required.' : ""} />
-                    <TextField fullWidth margin="normal" error={(!empPhone)} id="outlined-basic" label="Employee Phone" value={empPhone}
+                    <TextField fullWidth margin="normal" error={(!empPhone)} label="Employee Phone" value={empPhone}
                         onChange={(e) => {
                             setEmpPhone(e.target.value);
                         }} variant="filled" helperText={!empPhone ? 'Employee phone is required.' : ""} />
-                    <TextField fullWidth margin="normal" error={(!empMail)} id="outlined-basic" label="Employee Email" value={empMail}
+                    <TextField fullWidth margin="normal" error={(!empMail)} label="Employee Email" value={empMail}
                         onChange={(e) => {
                             setEmpMail(e.target.value);
                         }} variant="filled" helperText={!empMail ? 'Employee email is required.' : ""} />

@@ -39,8 +39,8 @@ function Dashboard() {
 
 
     useEffect(() => {
-        localStorage.setItem("department", JSON.stringify(EmployeeData.departments));
-        localStorage.setItem("employees", JSON.stringify(EmployeeData.employees));
+        localStorage.getItem("department") === null && localStorage.setItem("department", JSON.stringify(EmployeeData.departments));
+        localStorage.getItem("employees") === null && localStorage.setItem("employees", JSON.stringify(EmployeeData.employees));
         const departmentCollection = localStorage.getItem("department")
             ? JSON.parse(localStorage.getItem("department"))
             : [];
@@ -158,13 +158,15 @@ function Dashboard() {
                         addTeam={addTeam} setTeamName={setTeamName} setTeamHead={setTeamHead} teamHead={teamHead} teamName={teamName} alreadyExist={alreadyExist} setCurrentPage={setCurrentPage} employees={employees} />
                 </Grid>
                 <Grid item sm={9} >
-                    <Grid container item xs={6} sm={9} spacing={10}>
+                    <Grid container item xs={6} sm={9} spacing={5}>
                         <Grid item>
+                            <br/>
                             <Button variant="contained" color="primary" onClick={handleClickOpen}>
                                 ADD DEPARTMENT
                             </Button>
                         </Grid>
                         <Grid item>
+                            <br/>
                             <Employee employees={employees} setEmployees={setEmployees} empName={empName} empMail={empMail} empPhone={empPhone} setEmpName={setEmpName} setEmpMail={setEmpMail} setEmpPhone={setEmpPhone} />
                         </Grid>
                     </Grid>

@@ -37,17 +37,15 @@ function Team({ teamHead, teamName, teams, setTeams, addTeam, setTeamHead, setTe
                 <AddIcon />
             </IconButton>
             <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add Team</DialogTitle>
+                <DialogTitle >Add Team</DialogTitle>
                 <Container maxWidth="lg">
                     <TextField fullWidth margin="normal" error={(!teamName)} id="outlined-basic" label="Team Name" value={teamName}
                         onChange={(e) => {
                             setTeamName(e.target.value);
                         }} variant="filled" helperText={!teamName ? 'Team name is required.' : (alreadyExist ? "Team already exist." : "")} />
                     <FormControl variant="filled" fullWidth margin="normal" error={(!teamHead)}>
-                        <InputLabel id="demo-simple-select-filled-label">Team Head</InputLabel>
+                        <InputLabel>Team Head</InputLabel>
                         <Select
-                            labelId="demo-simple-select-filled-label"
-                            id="demo-simple-select-filled"
                             value={teamHead}
                             onChange={(e) => {
                                 setTeamHead(e.target.value);
